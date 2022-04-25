@@ -2,6 +2,7 @@
 Console.WriteLine("Welcome to Employee Wage!");
 int employeewageprhr = 20;
 int employeeworkinghr = 0;
+int employeeworkingdays = 20;
 Random emp = new Random();
 int isPresent = emp.Next(0, 4);
 Console.WriteLine(isPresent);
@@ -27,6 +28,8 @@ switch (isPresent)
 
 }
 int EmployeeWage = employeewageprhr * employeeworkinghr;
-Console.WriteLine("Employee Wage = " + EmployeeWage);
+int EmployeeMonthlysalary = EmployeeWage * employeeworkingdays;
+Console.WriteLine("Employee Daily Wage = " + EmployeeWage);
+Console.WriteLine("Employee Monthly Wage = " + EmployeeMonthlysalary);
 
 
