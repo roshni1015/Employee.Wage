@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Welcome to Employee Wage!");
-Console.WriteLine("Welcome to Employee wage computation!");
 int employeewageprhr = 20;
 int employeeworkinghr;
 Random emp = new Random();
