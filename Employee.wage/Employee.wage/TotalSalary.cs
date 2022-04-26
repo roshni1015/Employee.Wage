@@ -8,13 +8,17 @@ namespace Employee.wage
 {
     public class TotalSalary
     {
-        public void totalSalary()
+
+        String company;
+        int employeewageprhr = 20;
+        int employeeworkinghr = 0;
+        int employeeworkingdays = 0;
+        int maximumworkinghr;
+        int maximumworkingdays;
+
+        public void Totalsalary(string company, int employeewageprhr, int maximumworkinghr, int maximumworkingdays)
         {
-            int employeewageprhr = 20;
-            int employeeworkinghr = 0;
-            int employeeworkingdays = 0;
-            int maximumworkinghr = 100;
-            int maximumworkingdays = 20;
+
             Random emp = new Random();
             int isPresent = emp.Next(0, 4);
             Console.WriteLine(isPresent);
@@ -33,6 +37,8 @@ namespace Employee.wage
             {
                 Console.WriteLine("Employee is Absent!");
             }
+
+
             while ((employeeworkinghr < maximumworkinghr) && (employeeworkingdays < maximumworkingdays))
             {
 
@@ -57,8 +63,9 @@ namespace Employee.wage
             Console.WriteLine("Total Working Hours : " + employeeworkinghr);
             Console.WriteLine("Total working Days Per Month : " + employeeworkingdays);
             int totalSalary = employeewageprhr * employeeworkinghr;
-            Console.WriteLine("Total Salary of Employee per Month : " + totalSalary);
-
+            Console.WriteLine("Total Salary of Employee per Month in {0} is {1} : ", company, totalSalary);
         }
     }
 }
+
+
