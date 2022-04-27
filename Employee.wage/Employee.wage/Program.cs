@@ -2,8 +2,9 @@
 using Employee.wage;
 
 Console.WriteLine("Welcome to Employee Wage!");
-TotalSalary salary = new();
-salary.Totalsalary("adc", 20, 20, 100);
-salary.Totalsalary("def", 18, 21, 80);
-salary.Totalsalary("ijk", 19, 24, 90);
-
+EmployeewageBuilder Infosys = new EmployeewageBuilder("Infosys", 20, 2, 10);
+EmployeewageBuilder TCS = new EmployeewageBuilder("TCS", 10, 4, 20);
+Infosys.Computeemployeewage();
+Console.WriteLine(Infosys.ToString());
+TCS.Computeemployeewage();
+Console.WriteLine(TCS.ToString());
