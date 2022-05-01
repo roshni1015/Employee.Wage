@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,58 +8,80 @@ namespace Employee.wage
 {
     public class EmployeewageBuilder
     {
-        public const int isPartTime = 1;
-        public const int isFullTime = 2;
 
         String company;
-        int employeewageprhr;
-        int employeeworkingdays;
+        int totalsalary;
+        int employeewageprhr = 20;
+        int employeeworkinghr = 0;
+        int employeeworkingdays = 0;
         int maximumworkinghr;
-        int totalemployeewage;
+        int maximumworkingdays;
 
-        public EmployeewageBuilder(string company, int employeewageprhr, int employeeworkingdays, int maximumworkinghr)
+        public EmployeewageBuilder(string company, int employeewageprhr, int maximumworkinghr, int maximumworkingdays)
         {
             this.company = company;
             this.employeewageprhr = employeewageprhr;
             this.employeeworkingdays = employeeworkingdays;
             this.maximumworkinghr = maximumworkinghr;
         }
-        public void Computeemployeewage()
-        {
-            //variables
-            int employeehrs = 0, totalemployeehr = 0, totalworkingdays = 0;
-            //computation 
 
-            while (totalemployeehr <= this.maximumworkinghr && totalworkingdays < this.employeeworkingdays)
+        public void salary()
+        {
+
+            Random emp = new Random();
+            int isPresent = emp.Next(0, 4);
+            Console.WriteLine(isPresent);
+            if (isPresent == 1)
+            {
+                Console.WriteLine("Employee is present!");
+                Console.WriteLine("Employee is Full Time");
+                employeeworkinghr = 8;
+            }
+            else if (isPresent == 2)
+            {
+                Console.WriteLine("Employee is Present!");
+                Console.WriteLine("Employee is Part Time");
+                employeeworkinghr = 4;
+            }
+
+            else
+            {
+                Console.WriteLine("Employee is Absent!");
+                employeeworkinghr = 0;
+            }
+
+
+            while ((employeeworkinghr < maximumworkinghr) && (employeeworkingdays < maximumworkingdays))
             {
 
-                totalworkingdays++;
-                Random emp = new Random();
-                int empcheck = emp.Next(0, 3);
-                switch (empcheck)
+                switch (isPresent)
                 {
-                    case isPartTime:
-                        employeehrs = 4;
+                    case 1:
+                        employeeworkinghr += 8;
                         break;
-                    case isFullTime:
-                        employeehrs = 8;
+                    case 2:
+                        employeeworkinghr += 4;
+                        break;
+                    case 0:
+                        employeeworkinghr = 0;
                         break;
                     default:
-                        employeehrs = 0;
                         break;
+
                 }
-                totalemployeehr += employeehrs;
-                Console.WriteLine("Day# : " + totalworkingdays + "EmpolyeeHrs: " + employeehrs);
+                employeeworkingdays++;
+
             }
-            int totalemployeewage = totalemployeehr * employeewageprhr;
-            Console.WriteLine("Total Employee Wage for Company: " + company + " is: " + totalemployeewage);
+            Console.WriteLine("Total Working Hours : " + employeeworkinghr);
+            Console.WriteLine("Total working Days Per Month : " + employeeworkingdays);
+            int totalSalary = employeewageprhr * employeeworkinghr;
+            Console.WriteLine("Total Salary of Employee per Month in {0} is {1}  ", company, totalSalary);
         }
-        public string ToString()
+        public string toString()
         {
-            return "Total Employee Wage for Company: " + company + " is: " + totalemployeewage;
-
+            return "Total Employee Wage for Company : " + this.company + " is: " + this.totalsalary;
         }
-    }
 
+    }
 }
            
