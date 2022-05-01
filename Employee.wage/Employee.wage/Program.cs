@@ -1,10 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Employee.wage;
+﻿using Employee.wage;
 
 Console.WriteLine("Welcome to Employee Wage!");
-EmployeewageBuilder Infosys = new EmployeewageBuilder("Infosys", 20, 2, 10);
-EmployeewageBuilder TCS = new EmployeewageBuilder("TCS", 10, 4, 20);
-Infosys.Computeemployeewage();
-Console.WriteLine(Infosys.ToString());
-TCS.Computeemployeewage();
-Console.WriteLine(TCS.ToString());
+EmployeewageBuilder Employeewage = new EmployeewageBuilder();
+Employeewage.AddcompanyEmpWage("Infosys", 10, 4, 20);
+Employeewage.AddcompanyEmpWage("TCS", 10, 4, 20);
+Employeewage.computeEmpWage();

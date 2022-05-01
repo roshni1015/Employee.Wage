@@ -8,58 +8,62 @@ namespace Employee.wage
 {
     public class EmployeewageBuilder
     {
+
         public const int isPartTime = 1;
         public const int isFullTime = 2;
 
-        String company;
-        int employeewageprhr;
-        int employeeworkingdays;
-        int maximumworkinghr;
-        int totalemployeewage;
+        int numofcompany = 0;
+        private CompanyEmpWage[] companyEmpWageArray;
 
-        public EmployeewageBuilder(string company, int employeewageprhr, int employeeworkingdays, int maximumworkinghr)
+        public EmployeewageBuilder()
         {
-            this.company = company;
-            this.employeewageprhr = employeewageprhr;
-            this.employeeworkingdays = employeeworkingdays;
-            this.maximumworkinghr = maximumworkinghr;
+            this.companyEmpWageArray = new CompanyEmpWage[5];
+
         }
-        public void Computeemployeewage()
+        public void AddcompanyEmpWage(string company, int empRatePerHour, int numofWorkingDays, int maxHourPerMonth)
         {
-            //variables
-            int employeehrs = 0, totalemployeehr = 0, totalworkingdays = 0;
-            //computation 
-
-            while (totalemployeehr <= this.maximumworkinghr && totalworkingdays < this.employeeworkingdays)
+            companyEmpWageArray[this.numofcompany] = new CompanyEmpWage(company, empRatePerHour, numofWorkingDays, maxHourPerMonth);
+            numofcompany++;
+        }
+        public void computeEmpWage()
+        {
+            for (int i = 0; i < numofcompany; i++)
             {
+                companyEmpWageArray[i].SetTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
+                Console.WriteLine(this.companyEmpWageArray[i].ToString());
 
-                totalworkingdays++;
-                Random emp = new Random();
-                int empcheck = emp.Next(0, 3);
-                switch (empcheck)
+            }
+        }
+        private int computeEmpWage(CompanyEmpWage CompanyEmpWage)
+        {
+            int empHrs = 0, totalEmpHrs = 0, totalworkingDays = 0;
+            while (totalEmpHrs <= CompanyEmpWage.maxHourPerMonth && totalworkingDays < CompanyEmpWage.numofWorkingDays)
+            {
+                totalworkingDays++;
+                Random random = new Random();
+                int EmpCheck = random.Next(0, 3);
+                switch (EmpCheck)
                 {
                     case isPartTime:
-                        employeehrs = 4;
+                        empHrs = 4;
                         break;
                     case isFullTime:
-                        employeehrs = 8;
+                        empHrs = 8;
                         break;
                     default:
-                        employeehrs = 0;
+                        empHrs = 0;
                         break;
+
                 }
-                totalemployeehr += employeehrs;
-                Console.WriteLine("Day# : " + totalworkingdays + "EmpolyeeHrs: " + employeehrs);
+                totalEmpHrs += empHrs;
+                Console.WriteLine("Day#:" + totalworkingDays + "Employee Hours: " + empHrs);
             }
-            int totalemployeewage = totalemployeehr * employeewageprhr;
-            Console.WriteLine("Total Employee Wage for Company: " + company + " is: " + totalemployeewage);
-        }
-        public string ToString()
-        {
-            return "Total Employee Wage for Company: " + company + " is: " + totalemployeewage;
+            return totalEmpHrs * CompanyEmpWage.empRatePerHour;
 
         }
     }
-
 }
-           
+
+       
+
+     
