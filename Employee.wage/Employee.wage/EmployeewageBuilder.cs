@@ -38,7 +38,7 @@ namespace Employee.wage
         }
         private int computeEmpWage(CompanyEmpWage CompanyEmpWage)
         {
-            int empHrs = 0, totalEmpHrs = 0, totalworkingDays = 0;
+            int empHrs = 0, totalEmpHrs = 0, totalworkingDays = 0, dailywage = 0;
             while (totalEmpHrs <= CompanyEmpWage.maxHourPerMonth && totalworkingDays < CompanyEmpWage.numofWorkingDays)
             {
                 totalworkingDays++;
@@ -59,6 +59,9 @@ namespace Employee.wage
                 }
                 totalEmpHrs += empHrs;
                 Console.WriteLine("Day#:" + totalworkingDays + "Employee Hours: " + empHrs);
+                dailywage = empHrs * CompanyEmpWage.empRatePerHour;
+                Console.WriteLine("Daily wage : " + dailywage);
+
             }
             int amount = totalEmpHrs * CompanyEmpWage.empRatePerHour;
             Console.WriteLine(amount);
